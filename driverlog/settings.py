@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-vd3e+=q!r7f7q(2e+)74uvo^&9ri_@it@phno(i3)%y*zqx#5h
 # DEBUG = config('DEBUG', default=True, cast=bool)
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'http://localhost:5173']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -140,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
