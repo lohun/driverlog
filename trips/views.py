@@ -118,7 +118,7 @@ class TripViewSet(viewsets.ModelViewSet):
                 serializer.save(trip=trip, driver=driver)
 
             return Response(
-                {"status": "Log added successfully"}, 
+                {"status": "Log added successfuly"}, 
                 status=status.HTTP_201_CREATED
             )
         except Exception as e:
@@ -129,16 +129,11 @@ class TripViewSet(viewsets.ModelViewSet):
         
     @action(detail=False, methods=['post'])
     def geocode(self, request):
-        address = request.data.get('address')
-        if not address:
-            return Response({'error': "Address is required"}, status=status.HTTP_400_BAD_REQUEST)
-        # Restrictive regex: only letters, numbers, spaces, commas, periods, and hyphens
-        if fullmatch(r"^[A-Za-z0-9\s,.\-]+$", address):
-            # Dummy geocode result for demonstration; replace with actual geocoding logic
-            geocode = {"lat": 0.0, "lng": 0.0, "address": address}
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.info(f"Geocode result: {geocode}")
+        address = request.data['address']
+        if fullmatch(r"^[A-Za-z0-9 !@#()_+-\[\]{}'\"\\|,./?~]+$", address):
+            route_service = RouteCalculatorService()
+            geocode = route_service.geocode_address(address)
+            print(geocode)
             return Response({'results': geocode})
         return Response({'status': "Address not found"}, status=status.HTTP_404_NOT_FOUND)
 

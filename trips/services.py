@@ -1,4 +1,3 @@
-import requests
 import math
 from datetime import datetime, timedelta, time, date
 from django.conf import settings
@@ -11,13 +10,14 @@ from json import loads
 
 class RouteCalculatorService:
     def __init__(self):
-        self.base_url = "https://api.openrouteservice.org/v2"
+        self.base_url = "https://api.openrouteservice.org/v2/"
         self.api_key = settings.OPENROUTE_API_KEY
         self.geolocator = Nominatim(user_agent="eld_app")
     
     def geocode_address(self, address: str) -> Dict:
         try:
             location = self.geolocator.geocode(address)
+            print(location)
             if location:
                 return {
                     'lat': location.latitude,
