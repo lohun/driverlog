@@ -1,0 +1,7 @@
+# Main project urls.py (eld_app/urls.py)
+from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
